@@ -42,4 +42,14 @@ d3.csv('data/data.csv').then(function(healthData){
     chartGroup.append("g")
       .call(leftAxis);
 
+    var circlesGroup = chartGroup.selectAll("circle")
+      .data(healthData)
+      .enter()
+      .append("circle")
+      .attr("cx", d => xLinearScale(d.poverty))
+      .attr("cy", d => yLinearScale(d.healthcare))
+      .attr("r", "15")
+      .attr("fill", "pink")
+      .attr("opacity", ".5");
+  
 });
