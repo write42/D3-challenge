@@ -48,21 +48,22 @@ d3.csv('assets/data/data.csv').then(function(healthData){
       .append("circle")
       .attr("cx", d => xLinearScale(d.poverty))
       .attr("cy", d => yLinearScale(d.healthcare))
-      .attr("r", "15")
-      .attr("fill", "pink")
+      .attr("r", "14")
+      .attr("fill", "blue")
       .attr("opacity", ".5");
       
-    var bubbleLabel = circlesGroup.selectAll("text")
+    var bubbleLabel = chartGroup.selectAll(".stateText")
       .data(healthData)
       .enter()
       .append("text")
-      .attr('x',function(d){return d.poverty})
-      .attr('y', function(d){return d.healthcare})
+      .attr('class','stateText')
+      .attr('x',function(d){return xLinearScale(d.poverty)})
+      .attr('y', function(d){return yLinearScale(d.healthcare)})
       .attr('text-anchor','middle')
       .text(function(d){return d.abbr;})
       .style("fill","black")
       .style("font-family", "Helvetica Neue, Helvetica, Arial, san-serif")
-      .style("font-size", "5px");
+      .style("font-size", "10px");
 
     chartGroup.append("text")
       .attr("transform", "rotate(-90)")
